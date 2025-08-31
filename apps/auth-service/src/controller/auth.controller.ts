@@ -1,5 +1,8 @@
 import { Request, Response, NextFunction } from "express";
-import { validateRegistrationData } from "../utils/auth.helper";
+import {
+  validateRegistrationData,
+  checkOtpRestriction,
+} from "../utils/auth.helper";
 import prisma from "../libs/prisma";
 import { ValidationError } from "../../../../packages/error-handler";
 
@@ -15,4 +18,6 @@ export const userRegistration = async (
   if (existingUser) {
     return next(new ValidationError("User already exists with this email!"));
   }
+
+  await checkOtpRestriction(email, next);
 };
