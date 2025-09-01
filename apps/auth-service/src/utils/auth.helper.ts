@@ -2,6 +2,7 @@ import crypto from "crypto";
 import { ValidationError } from "../../../../packages/error-handler";
 import redis from "../../../../packages/libs/redis";
 import { sendEmail } from "./sendMail";
+import { NextFunction } from "express";
 
 export const validateRegistrationData = (
   data: any,
@@ -25,7 +26,7 @@ export const validateRegistrationData = (
 
 export const checkOtpRestriction = async (
   email: string,
-  next: NewableFunction
+  next: NextFunction
 ) => {
   if (await redis.get(`otp_lock:${email}`)) {
     return next(
@@ -48,6 +49,20 @@ export const checkOtpRestriction = async (
       new ValidationError("Please wait 1minute before requwsting a new OTP!")
     );
   }
+};
+
+export const trackOtpRequests = async (email: string, next: NextFunction) => {
+  const otpRequestKey = `otp_request_count:${email}`;
+  let otpRequests = parseInt((await redis.get(otpRequestKey)) || "0");
+  if (otpRequests > 2) {
+    await redis.set(`otp_span_lock:${email}`, "locked", "EX", 3600);
+    return next(
+      new ValidationError(
+        "Too many OTP requests. Please try again 1 hour before requesting again. "
+      )
+    );
+  }
+  await redis.set(otpRequestKey, otpRequests + 1, "EX", 3600);
 };
 
 export const sendOtp = async (

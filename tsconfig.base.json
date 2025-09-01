@@ -1,10 +1,12 @@
 {
   "compilerOptions": {
     "composite": true,
+    "resolveJsonModule": true,
     "declarationMap": true,
     "emitDeclarationOnly": true,
     "importHelpers": true,
     "isolatedModules": true,
+    "baseUrl":".",
     "lib": ["es2022"],
     "module": "nodenext",
     "moduleResolution": "nodenext",
@@ -16,6 +18,11 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "es2022",
-    "customConditions": ["development"]
+    "customConditions": ["development"],
+    "paths":{
+      "@packages":[
+        "packages/*"
+      ]
+    }
   }
 }
