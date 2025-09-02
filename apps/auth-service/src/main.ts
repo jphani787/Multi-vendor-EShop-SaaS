@@ -1,13 +1,18 @@
+import fs from "fs";
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import { errorMiddleware } from "../../../packages/error-handler/error-middleware";
 import router from "./routes/auth.router";
 import swaggerUi from "swagger-ui-express";
+import path from "path";
 
-const swaggerDocument = JSON.parse(JSON.stringify("./swagger-output.json"));
-// import * as swaggerDocument from "./swagger-output.json";
-// const swaggerDocument = require('./swagger-output.json');
+const swaggerDocument = JSON.parse(
+  fs.readFileSync(
+    `${path.resolve()}/apps/auth-service/src/swagger-output.json`,
+    "utf-8"
+  )
+);
 const app = express();
 
 app.use(

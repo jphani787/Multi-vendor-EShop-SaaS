@@ -11,7 +11,7 @@
     "http"
   ],
   "paths": {
-    "/user-registration": {
+    "/api/user-registration": {
       "post": {
         "description": "",
         "parameters": [
@@ -22,10 +22,13 @@
               "type": "object",
               "properties": {
                 "name": {
-                  "example": "any"
+                  "example": "phani"
                 },
                 "email": {
-                  "example": "any"
+                  "example": "jphanindra787@gmail.com"
+                },
+                "password": {
+                  "example": "Pp@9091$"
                 }
               }
             }

@@ -11,16 +11,16 @@
     "esModuleInterop": true
   },
   "include": [
-    "src/**/*.ts",
-    "../../packages/**/*.ts",
-    "src/**/*.json",
-    "../../packages/**/*.json"
-  ],
+      "src/**/*.ts",
+      "src/**/*.json",
+      "../../packages/**/*.ts",
+      "../../packages/**/*.json"
+    ],
   "exclude": [
-    "out-tsc",
-    "dist",
-    "jest.config.ts",
-    "src/**/*.spec.ts",
-    "src/**/*.test.ts"
-  ]
+      "out-tsc",
+      "dist",
+      "jest.config.ts",
+      "src/**/*.spec.ts",
+      "src/**/*.test.ts"
+    ]
 }

@@ -1,7 +1,7 @@
 {
   "extends": "../../tsconfig.base.json",
-  "files": ["./src/swagger-output.json"],
-  "include": ["src/**/*.json", "src/swagger-output.json"],
+  "files": ["src/swagger-output.js"],
+  "include": ["src/**/*.json", "src/swagger-output.js"],
   "references": [
     {
       "path": "./tsconfig.app.json"
