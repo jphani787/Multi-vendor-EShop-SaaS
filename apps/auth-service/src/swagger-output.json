@@ -22,10 +22,10 @@
               "type": "object",
               "properties": {
                 "name": {
-                  "example": "phani"
+                  "example": "Phanindra Kumar J"
                 },
                 "email": {
-                  "example": "jphanindra787@gmail.com"
+                  "example": "jphanindra@gmail.com"
                 },
                 "password": {
                   "example": "Pp@9091$"
@@ -37,6 +37,39 @@
         "responses": {
           "200": {
             "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/verify-user": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "example": "jphanindra@gmail.com"
+                },
+                "otp": {
+                  "example": "any"
+                },
+                "password": {
+                  "example": "Pp@9091$"
+                },
+                "name": {
+                  "example": "Phanindra Kumar J"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
           }
         }
       }
